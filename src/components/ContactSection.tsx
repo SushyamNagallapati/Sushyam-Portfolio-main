@@ -6,7 +6,6 @@ const ContactSection = () => {
     <section className="w-full border-t border-border/50 bg-background">
       <FadeIn>
         <div className="w-full max-w-3xl mx-auto px-6 sm:px-8 py-24 sm:py-32 flex flex-col items-center text-center">
-
           {/* Eyebrow */}
           <p className="text-xs sm:text-sm font-medium text-muted-foreground tracking-[0.2em] uppercase mb-5">
             Get in touch
@@ -19,8 +18,9 @@ const ContactSection = () => {
 
           {/* Subtext */}
           <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-md mb-10">
-            Actively looking for new grad roles in software engineering and AI/ML.
-            Whether you have an opening or just want to talk, I would love to hear from you.
+            Actively looking for new grad roles in software engineering and
+            AI/ML. Whether you have an opening or just want to talk, I would ❤️
+            to hear from you.
           </p>
 
           {/* CTAs */}
@@ -43,7 +43,6 @@ const ContactSection = () => {
               LinkedIn
             </a>
           </div>
-
         </div>
       </FadeIn>
     </section>
