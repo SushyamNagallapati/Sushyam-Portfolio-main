@@ -15,15 +15,12 @@ import ContactSection from "@/components/ContactSection";
 import { Github, Play, ExternalLink, FileText } from "lucide-react";
 
 type ProjectCategory = "Selected" | "AI/ML Experiments" | "Web/Mobile Apps" | "Hardware/IoT";
-type ProjectStatus = "Live" | "Research" | "Open Source";
-
 interface Project {
   id: number;
   name: string;
   description: string;
   image: string;
   tags: string[];
-  status: ProjectStatus;
   viewMoreUrl?: string;
   liveUrl?: string;
   videoUrl?: string;
@@ -38,12 +35,6 @@ const categories: ProjectCategory[] = [
   "Hardware/IoT",
 ];
 
-const statusStyles: Record<ProjectStatus, string> = {
-  Live: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20",
-  Research: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20",
-  "Open Source": "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20",
-};
-
 const projects: Project[] = [
   {
     id: 1,
@@ -52,7 +43,6 @@ const projects: Project[] = [
       "A modular multi-agent system in Python using LangGraph and LLaMA 3.2, designed to resolve health insurance claim queries. Integrates a RAG pipeline for policy document understanding, an NL-to-SQL engine with graph-based schema traversal, and an automated email drafting agent. RAG achieved 88% answer correctness; NL-to-SQL hit 100% accuracy across all evaluated schemas.",
     image: agenticAiInsuranceImg,
     tags: ["Python", "LangGraph", "LLaMA 3.2", "RAG", "NL-to-SQL"],
-    status: "Open Source",
     viewMoreUrl: "https://drive.google.com/file/d/1JP7RQRm-4GNahKEbpCaVNlaz58WeppNz/view?usp=sharing",
     githubUrl: "https://github.com/SushyamNagallapati/Agentic-Financial-Claim-Assistant-MCP-RAG",
     categories: ["Selected", "AI/ML Experiments"],
@@ -64,7 +54,6 @@ const projects: Project[] = [
       "A full-stack AI chatbot exploring how large language models integrate into production web applications. The TypeScript/Node.js backend handles multi-turn conversations with context tracking, input validation, and a clean layered architecture across routes, controllers, services, and repositories. The React frontend features typing indicators, markdown rendering, and auto-scroll.",
     image: customChatbotImg,
     tags: ["React", "TypeScript", "Node.js", "LLM", "REST API"],
-    status: "Live",
     liveUrl: "https://custom-chatbot-tau-swart.vercel.app/",
     githubUrl: "https://github.com/SushyamNagallapati/Custom-ChatBot",
     categories: ["Web/Mobile Apps", "Selected"],
@@ -76,7 +65,6 @@ const projects: Project[] = [
       "A geospatial web app for planning outdoor activities, combining trail discovery with hyper-local weather forecasts. The Node.js/Express.js backend aggregates three external APIs: Mapbox for maps and geocoding, the OpenStreetMap Overpass API for trail data, and the NASA POWER API for climate history, all composed into a single structured response for the frontend.",
     image: horuscastImg,
     tags: ["Node.js", "Express.js", "Mapbox", "NASA API", "Geospatial"],
-    status: "Live",
     liveUrl: "https://horus-cast-nasa-hackathon.vercel.app/",
     githubUrl: "https://github.com/SushyamNagallapati/HorusCast-NASA-Hackathon",
     categories: ["Web/Mobile Apps"],
@@ -88,7 +76,6 @@ const projects: Project[] = [
       "A React app that pulls live movie data from a REST API, with real-time search, favorites management, and a reusable component architecture. State is handled with useState and useEffect, keeping UI updates responsive and predictable.",
     image: movieSearchImg,
     tags: ["React", "REST API", "JavaScript", "CSS"],
-    status: "Live",
     liveUrl: "https://movie-application-inky.vercel.app/",
     githubUrl: "https://github.com/SushyamNagallapati/Movie-Application",
     categories: ["Web/Mobile Apps"],
@@ -100,7 +87,6 @@ const projects: Project[] = [
       "A privacy-first, fully local RAG assistant that lets users ask natural language questions over their own PDF documents using an on-device LLM. Explores what it takes to run accurate retrieval and grounded generation without sending any data to an external service.",
     image: localRagImg,
     tags: ["Python", "LLaMA 3.2", "RAG", "Ollama", "FAISS"],
-    status: "Open Source",
     githubUrl: "https://github.com/SushyamNagallapati/RAG",
     categories: ["AI/ML Experiments"],
   },
@@ -111,7 +97,6 @@ const projects: Project[] = [
       "An autonomous driving system for opposite-lane overtaking on two-way roads, combining vision-based perception, soft actor-critic reinforcement learning, and model predictive control. Focused on producing safe, human-like overtaking behavior under tight spatial constraints using only onboard cameras, with no reliance on HD maps or external sensors.",
     image: autonomousOvertakingImg,
     tags: ["Python", "Reinforcement Learning", "MPC", "Computer Vision", "CARLA"],
-    status: "Research",
     viewMoreUrl: "https://drive.google.com/file/d/1kFC-D7zrsPnd96tIv8DZh7WrauieD6Ge/view?usp=sharing",
     categories: ["Selected"],
   },
@@ -122,7 +107,6 @@ const projects: Project[] = [
       "A comparative study of classical planners, CNN-based models, and reinforcement learning for mobile robot navigation in obstacle-dense environments. Evaluated where traditional algorithms break down, how well learning-based models generalize to unseen layouts, and whether RL can meaningfully refine planned paths under realistic dynamics.",
     image: pathPlanningImg,
     tags: ["Python", "PyTorch", "CNN", "A*", "Reinforcement Learning"],
-    status: "Research",
     viewMoreUrl: "https://drive.google.com/file/d/1NObQ4eHOOZXq_Eaq2_VeIma8n2_n4giv/view?usp=sharing",
     githubUrl: "https://github.com/SushyamNagallapati/path-planning-cnn/tree/master",
     categories: ["AI/ML Experiments"],
@@ -134,7 +118,6 @@ const projects: Project[] = [
       "A remote monitoring and control system connecting a Delta PLC to an ESP32 microcontroller over Wi-Fi for real-time machining data acquisition. Hardware interfacing spans sensors, relay modules, and the PLC, replacing manual operation with a wireless interface. Evaluation covered data transmission accuracy, remote command responsiveness, and overall system reliability.",
     image: iotMachiningImg,
     tags: ["ESP32", "PLC", "IoT", "C++", "Wi-Fi"],
-    status: "Research",
     viewMoreUrl: "https://drive.google.com/file/d/1l86K94k6X1TRprfh9AVbgrFCd-S3wJwT/view?usp=sharing",
     githubUrl: "https://github.com/SushyamNagallapati/IOT-BASED-CONTROL-OF-MACHINING-PROCESS-USING-PLC-AND-ESP32",
     categories: ["Hardware/IoT"],
@@ -146,7 +129,6 @@ const projects: Project[] = [
       "A 5-degree-of-freedom robotic arm for pick-and-place tasks, controlled via Arduino, servo motors, and Bluetooth. Uses inverse kinematics to compute joint angles and reach target positions across varying object sizes and orientations, with hands-on work spanning robotics, motion control, and embedded systems.",
     image: roboticArmImg,
     tags: ["Arduino", "Servo Motors", "Bluetooth", "Inverse Kinematics", "C++"],
-    status: "Research",
     viewMoreUrl: "https://drive.google.com/file/d/1bUUpsJsVT-K2xgDWUHSZJhYoxI_heK86/view?usp=sharing",
     videoUrl: "https://docs.google.com/videos/d/1_kb1BwpyCrv-dZ0lvJdkU0YRG1yVs3SdY_Vkv6-jXrY/edit?usp=sharing",
     categories: ["Hardware/IoT"],
@@ -225,15 +207,10 @@ const Projects = () => {
                   >
                     {/* Text Content */}
                     <div className="w-full md:flex-1 md:max-w-sm lg:max-w-md">
-                      {/* Project number + status row */}
-                      <div className="flex items-center gap-3 mb-4">
+                      {/* Project index number */}
+                      <div className="mb-3">
                         <span className="font-serif text-4xl sm:text-5xl font-bold text-muted-foreground/20 leading-none select-none">
                           {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <span
-                          className={`text-[0.65rem] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${statusStyles[project.status]}`}
-                        >
-                          {project.status}
                         </span>
                       </div>
 
