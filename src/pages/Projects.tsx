@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import FadeIn from "@/components/FadeIn";
 import horuscastImg from "@/assets/horuscast.png";
 import agenticAiInsuranceImg from "@/assets/agentic-ai-insurance.png";
@@ -15,6 +15,7 @@ import ContactSection from "@/components/ContactSection";
 import { Github, Play, ExternalLink, FileText } from "lucide-react";
 
 type ProjectCategory = "Selected" | "AI/ML Experiments" | "Web/Mobile Apps" | "Hardware/IoT";
+
 interface Project {
   id: number;
   name: string;
@@ -28,6 +29,68 @@ interface Project {
   categories: ProjectCategory[];
 }
 
+/* ── Scramble title ──────────────────────────────── */
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+const ScrambleTitle = ({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) => {
+  const [output, setOutput] = useState(text);
+  const [triggered, setTriggered] = useState(false);
+  const ref = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTriggered(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!triggered) return;
+    let frame = 0;
+    const totalFrames = text.length * 4;
+    const id = setInterval(() => {
+      setOutput(
+        text
+          .split("")
+          .map((ch, i) => {
+            if (ch === " ") return " ";
+            if (i < Math.floor(frame / 4)) return text[i];
+            return CHARS[Math.floor(Math.random() * CHARS.length)];
+          })
+          .join("")
+      );
+      frame++;
+      if (frame > totalFrames) {
+        setOutput(text);
+        clearInterval(id);
+      }
+    }, 28);
+    return () => clearInterval(id);
+  }, [triggered, text]);
+
+  return (
+    <h2 ref={ref} className={className}>
+      {output}
+    </h2>
+  );
+};
+
+/* ── Data ────────────────────────────────────────── */
 const categories: ProjectCategory[] = [
   "Selected",
   "AI/ML Experiments",
@@ -135,13 +198,57 @@ const projects: Project[] = [
   },
 ];
 
+/* ── Main component ──────────────────────────────── */
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("Selected");
+  const [pill, setPill] = useState({ left: 0, width: 0, ready: false });
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const filteredProjects = projects.filter((project) =>
-    project.categories.includes(activeCategory)
+  const filteredProjects = projects.filter((p) =>
+    p.categories.includes(activeCategory)
   );
 
+  /* Sliding pill measurement */
+  const updatePill = useCallback(() => {
+    const idx = categories.indexOf(activeCategory);
+    const tab = tabRefs.current[idx];
+    const container = tabsRef.current;
+    if (!tab || !container) return;
+    const tabRect = tab.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    setPill({
+      left: tabRect.left - containerRect.left + container.scrollLeft,
+      width: tabRect.width,
+      ready: true,
+    });
+  }, [activeCategory]);
+
+  useEffect(() => {
+    updatePill();
+    window.addEventListener("resize", updatePill);
+    return () => window.removeEventListener("resize", updatePill);
+  }, [updatePill]);
+
+  /* Cursor spotlight */
+  const handleSpotlight = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--sx", `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty("--sy", `${e.clientY - rect.top}px`);
+  };
+
+  /* Image 3D tilt */
+  const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    e.currentTarget.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 5}deg) scale3d(1.02,1.02,1.02)`;
+  };
+
+  const resetTilt = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.transform =
+      "perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-muted">
@@ -150,7 +257,7 @@ const Projects = () => {
       <main className="flex-1 pt-24 sm:pt-28 pb-28 sm:pb-24">
         <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
 
-          {/* Page Title */}
+          {/* Page title */}
           <FadeIn>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-2">
               Projects
@@ -160,17 +267,34 @@ const Projects = () => {
             </p>
           </FadeIn>
 
-          {/* Category Tabs */}
+          {/* Category tabs with sliding pill */}
           <FadeIn delay={80}>
-            <div className="flex flex-nowrap sm:flex-wrap gap-2 mb-12 sm:mb-16 overflow-x-auto pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-              {categories.map((category) => (
+            <div
+              ref={tabsRef}
+              className="relative flex flex-nowrap sm:flex-wrap gap-1 mb-12 sm:mb-16 overflow-x-auto pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none"
+            >
+              {/* Sliding background pill */}
+              {pill.ready && (
+                <span
+                  aria-hidden
+                  className="absolute top-0 h-full rounded-full bg-foreground pointer-events-none"
+                  style={{
+                    left: pill.left,
+                    width: pill.width,
+                    transition: "left 0.28s cubic-bezier(0.4,0,0.2,1), width 0.28s cubic-bezier(0.4,0,0.2,1)",
+                  }}
+                />
+              )}
+
+              {categories.map((category, i) => (
                 <button
                   key={category}
+                  ref={(el) => { tabRefs.current[i] = el; }}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full whitespace-nowrap flex-shrink-0 ${
+                  className={`relative z-10 px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap flex-shrink-0 transition-colors duration-200 ${
                     activeCategory === category
-                      ? "bg-foreground text-background"
-                      : "bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                      ? "text-background"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {category}
@@ -179,132 +303,150 @@ const Projects = () => {
             </div>
           </FadeIn>
 
-          {/* Projects List */}
+          {/* Projects list */}
           {filteredProjects.length > 0 ? (
             <div className="space-y-0">
               {filteredProjects.map((project, index) => (
                 <FadeIn key={project.id} delay={Math.min(index * 80, 200)}>
-                  {/* Divider (not before first) */}
                   {index > 0 && (
                     <div className="border-t border-border/50 my-14 sm:my-16" />
                   )}
 
+                  {/* Spotlight wrapper */}
                   <div
-                    className={`flex flex-col gap-8 md:gap-12 lg:gap-16 ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                    } items-center`}
+                    className="rounded-2xl transition-all duration-200"
+                    style={{
+                      "--sx": "50%",
+                      "--sy": "50%",
+                      background:
+                        "radial-gradient(600px circle at var(--sx) var(--sy), hsl(var(--primary) / 0.05), transparent 65%)",
+                    } as React.CSSProperties}
+                    onMouseMove={handleSpotlight}
                   >
-                    {/* Text Content */}
-                    <div className="w-full md:flex-1 md:max-w-sm lg:max-w-md">
-                      {/* Project index number */}
-                      <div className="mb-3">
-                        <span className="font-serif text-4xl sm:text-5xl font-bold text-muted-foreground/20 leading-none select-none">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                      </div>
-
-                      <h2 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">
-                        {project.name}
-                      </h2>
-                      <p className="text-[0.875rem] sm:text-sm md:text-[0.9rem] text-muted-foreground leading-relaxed mb-5 sm:mb-6">
-                        {project.description}
-                      </p>
-
-                      {/* Tech tags */}
-                      <div className="flex flex-wrap gap-1.5 mb-6 sm:mb-7">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[0.7rem] font-medium px-2.5 py-1 rounded-full bg-background border border-border text-muted-foreground"
-                          >
-                            {tag}
+                    <div
+                      className={`flex flex-col gap-8 md:gap-12 lg:gap-16 ${
+                        index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                      } items-center py-4`}
+                    >
+                      {/* Text */}
+                      <div className="w-full md:flex-1 md:max-w-sm lg:max-w-md">
+                        <div className="mb-3">
+                          <span className="font-serif text-4xl sm:text-5xl font-bold text-muted-foreground/20 leading-none select-none">
+                            {String(index + 1).padStart(2, "0")}
                           </span>
-                        ))}
-                      </div>
-
-                      {/* Action buttons */}
-                      <div className="flex flex-wrap gap-2 sm:gap-3">
-                        {project.viewMoreUrl && (
-                          <a
-                            href={project.viewMoreUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-all duration-200"
-                          >
-                            <FileText className="w-3.5 h-3.5" />
-                            View Report
-                          </a>
-                        )}
-                        {project.liveUrl && (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-all duration-200"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            Live Demo
-                          </a>
-                        )}
-                        {project.videoUrl && (
-                          <a
-                            href={project.videoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full border border-border text-foreground hover:bg-muted transition-all duration-200"
-                          >
-                            <Play className="w-3.5 h-3.5" />
-                            Video
-                          </a>
-                        )}
-                        {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full border border-border text-foreground hover:bg-muted transition-all duration-200"
-                          >
-                            <Github className="w-3.5 h-3.5" />
-                            GitHub
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Project Image */}
-                    <div className="w-full md:flex-1 flex items-center justify-center">
-                      {project.liveUrl ? (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group block w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
-                          aria-label={`Open live view of ${project.name}`}
-                        >
-                          <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:border-border">
-                            <img
-                              src={project.image}
-                              alt={project.name}
-                              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                            />
-                            {/* Hover overlay */}
-                            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300 flex items-center justify-center">
-                              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-semibold tracking-wide uppercase text-background bg-foreground px-4 py-2 rounded-full flex items-center gap-2">
-                                <ExternalLink className="w-3 h-3" />
-                                Open Live
-                              </span>
-                            </div>
-                          </div>
-                        </a>
-                      ) : (
-                        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md">
-                          <img
-                            src={project.image}
-                            alt={project.name}
-                            className="w-full h-auto object-cover"
-                          />
                         </div>
-                      )}
+
+                        <ScrambleTitle
+                          text={project.name}
+                          className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-3 sm:mb-4 leading-tight"
+                        />
+
+                        <p className="text-[0.875rem] sm:text-sm md:text-[0.9rem] text-muted-foreground leading-relaxed mb-5 sm:mb-6">
+                          {project.description}
+                        </p>
+
+                        {/* Tech tags */}
+                        <div className="flex flex-wrap gap-1.5 mb-6 sm:mb-7">
+                          {project.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-[0.7rem] font-medium px-2.5 py-1 rounded-full bg-background border border-border text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground hover:bg-primary/5"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Buttons */}
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
+                          {project.viewMoreUrl && (
+                            <a
+                              href={project.viewMoreUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-all duration-200"
+                            >
+                              <FileText className="w-3.5 h-3.5" />
+                              View Report
+                            </a>
+                          )}
+                          {project.liveUrl && (
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-all duration-200"
+                            >
+                              <ExternalLink className="w-3.5 h-3.5" />
+                              Live Demo
+                            </a>
+                          )}
+                          {project.videoUrl && (
+                            <a
+                              href={project.videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full border border-border text-foreground hover:bg-muted transition-all duration-200"
+                            >
+                              <Play className="w-3.5 h-3.5" />
+                              Video
+                            </a>
+                          )}
+                          {project.githubUrl && (
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full border border-border text-foreground hover:bg-muted transition-all duration-200"
+                            >
+                              <Github className="w-3.5 h-3.5" />
+                              GitHub
+                            </a>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Image with 3D tilt */}
+                      <div className="w-full md:flex-1 flex items-center justify-center">
+                        <div
+                          className="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
+                          style={{ transition: "transform 0.15s ease-out" }}
+                          onMouseMove={handleTilt}
+                          onMouseLeave={resetTilt}
+                        >
+                          {project.liveUrl ? (
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group block"
+                              aria-label={`Open live view of ${project.name}`}
+                            >
+                              <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md transition-shadow duration-300 group-hover:shadow-xl">
+                                <img
+                                  src={project.image}
+                                  alt={project.name}
+                                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                                />
+                                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300 flex items-center justify-center">
+                                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-semibold tracking-wide uppercase text-background bg-foreground px-4 py-2 rounded-full flex items-center gap-2">
+                                    <ExternalLink className="w-3 h-3" />
+                                    Open Live
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                          ) : (
+                            <div className="overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md">
+                              <img
+                                src={project.image}
+                                alt={project.name}
+                                className="w-full h-auto object-cover"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </FadeIn>
@@ -325,7 +467,7 @@ const Projects = () => {
                 >
                   reach out
                 </a>
-                . I'd love to hear from you!
+                . I'd love to hear from you.
               </p>
             </div>
           )}
