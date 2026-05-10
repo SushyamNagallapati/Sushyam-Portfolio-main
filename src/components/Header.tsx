@@ -12,9 +12,8 @@ const Header = () => {
     { label: "About", href: "/", active: location.pathname === "/" },
     {
       label: "Resume",
-      href: "https://drive.google.com/file/d/1_vDMkN7Duow5DrriBFWrxN1F4xY-Ujvx/view?usp=sharing",
-      active: false,
-      isExternal: true,
+      href: "/resume",
+      active: location.pathname === "/resume",
     },
     {
       label: "Projects",

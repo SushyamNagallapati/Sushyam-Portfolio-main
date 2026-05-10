@@ -259,3 +259,11 @@
   border-color: hsl(var(--primary) / 0.55);
   background: hsl(var(--primary) / 0.07);
 }
+
+/* ── Print styles (resume page) ────────────────────── */
+@media print {
+  * { cursor: auto !important; }
+  .c-dot, .c-ring { display: none !important; }
+  body { background: white !important; color: black !important; }
+  @page { margin: 1.5cm 2cm; }
+}
