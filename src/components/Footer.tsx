@@ -33,10 +33,10 @@ const Footer = () => {
             </div>
 
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground leading-snug mb-3">
-              Let's build something together.
+              Always building something new.
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              I'm actively looking for SWE and AI engineer roles — onsite, hybrid, or remote. If something looks interesting, just say hi.
+              MEng in AI/ML from Waterloo, with a background in mechatronics and a genuine interest in how systems — software or otherwise — hold together under pressure.
             </p>
 
             <a
