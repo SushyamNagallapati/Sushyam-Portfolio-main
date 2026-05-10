@@ -57,22 +57,52 @@ const education = [
 const skills = [
   {
     label: "Languages",
-    items: "Python · TypeScript · JavaScript · SQL",
+    items: ["Python", "TypeScript", "JavaScript", "SQL"],
   },
   {
     label: "AI / ML",
-    items:
-      "LangGraph · RAG · LLaMA 3.2 · OpenAI API · ChromaDB · Prompt Engineering",
+    items: [
+      "LLM Integration",
+      "Retrieval-Augmented Generation (RAG)",
+      "Agentic AI",
+      "LangGraph",
+      "LLaMA 3.2",
+      "OpenAI API",
+      "Prompt Engineering",
+      "ChromaDB",
+      "Vector Databases",
+    ],
   },
   {
     label: "Frontend",
-    items: "React · Tailwind CSS · Shadcn/UI · Mapbox GL JS",
+    items: ["React.js", "Tailwind CSS", "Shadcn/UI", "Mapbox GL JS", "HTML", "CSS"],
   },
   {
     label: "Backend",
-    items: "FastAPI · Node.js · Express.js · SQLAlchemy · REST APIs",
+    items: [
+      "FastAPI",
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "Microservices",
+      "SQLAlchemy",
+      "SQLite",
+    ],
+  },
+  {
+    label: "Tools",
+    items: ["Git", "GitHub", "Postman", "VS Code", "Ollama", "SAP ERP"],
   },
 ];
+
+const SectionHeading = ({ title }: { title: string }) => (
+  <div className="flex items-center gap-3 mb-6">
+    <div className="w-[3px] h-4 rounded-full bg-primary flex-shrink-0" />
+    <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+      {title}
+    </h2>
+  </div>
+);
 
 const Resume = () => {
   return (
@@ -84,139 +114,156 @@ const Resume = () => {
       <main className="flex-1 pt-24 sm:pt-28 pb-20 sm:pb-24 print:pt-0 print:pb-0">
         <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
           <FadeIn>
-            {/* Document card */}
-            <div className="bg-background border border-border/60 rounded-2xl shadow-sm px-6 py-10 sm:px-12 sm:py-14 print:shadow-none print:border-none print:rounded-none print:px-0 print:py-0">
+            {/* Document card — primary accent stripe on top */}
+            <div className="bg-background border border-border/60 rounded-2xl shadow-sm overflow-hidden print:shadow-none print:border-none print:rounded-none">
 
-              {/* Name + Download */}
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-3">
-                <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground leading-tight">
-                  Sushyam Nagallapati
-                </h1>
-                <a
-                  href={RESUME_PDF_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="print:hidden inline-flex items-center gap-2 h-9 px-5 text-sm font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-all duration-200 whitespace-nowrap self-start"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  Download PDF
-                </a>
-              </div>
+              {/* Top accent bar */}
+              <div className="h-1 w-full bg-primary" />
 
-              {/* Headline */}
-              <p className="text-sm sm:text-base text-muted-foreground mb-5 leading-relaxed max-w-xl">
-                MEng graduate in System Design Engineering (AI/ML) from the University of Waterloo, building multi-agent AI systems and full-stack web applications. Open to SWE and AI engineer roles — onsite, hybrid, or remote.
-              </p>
+              <div className="px-6 py-10 sm:px-12 sm:py-12">
 
-              {/* Contact row */}
-              <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm text-muted-foreground mb-10 border-b border-border pb-8">
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
-                  Waterloo, ON
-                </span>
-                <a href="tel:+12269756863" className="flex items-center gap-1.5 hover:text-foreground transition-colors">
-                  <Phone className="w-3.5 h-3.5 flex-shrink-0" />
-                  (226) 975-6863
-                </a>
-                <a href="mailto:s2nagall@uwaterloo.ca" className="flex items-center gap-1.5 hover:text-foreground transition-colors">
-                  <Mail className="w-3.5 h-3.5 flex-shrink-0" />
-                  s2nagall@uwaterloo.ca
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/sushyamnagallapati"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 hover:text-foreground transition-colors"
-                >
-                  <Linkedin className="w-3.5 h-3.5 flex-shrink-0" />
-                  linkedin.com/in/sushyamnagallapati
-                </a>
-              </div>
+                {/* Name + Download */}
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-3">
+                  <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground leading-tight">
+                    Sushyam Nagallapati
+                  </h1>
+                  <a
+                    href={RESUME_PDF_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="print:hidden inline-flex items-center gap-2 h-9 px-5 text-sm font-medium rounded-full bg-primary text-primary-foreground hover:opacity-85 transition-all duration-200 whitespace-nowrap self-start"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    Download PDF
+                  </a>
+                </div>
 
-              {/* ── Experience ────────────────────── */}
-              <section className="mb-10">
-                <h2 className="font-serif text-lg font-semibold text-foreground mb-4 uppercase tracking-widest text-xs text-muted-foreground">
-                  Experience
-                </h2>
+                {/* Headline */}
+                <p className="text-sm sm:text-[0.95rem] text-muted-foreground mb-6 leading-relaxed max-w-xl">
+                  MEng graduate in System Design Engineering (AI/ML) from the University of Waterloo, building multi-agent AI systems and full-stack web applications. Open to SWE and AI engineer roles — onsite, hybrid, or remote.
+                </p>
 
-                <div className="space-y-8">
-                  {experience.map((job) => (
-                    <div key={job.company}>
-                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-4 mb-1">
-                        <div>
-                          <span className="font-semibold text-foreground text-sm sm:text-base">
-                            {job.company}
-                          </span>
-                          <span className="text-muted-foreground text-sm">
-                            {" "}· {job.role}
+                {/* Contact row */}
+                <div className="flex flex-wrap gap-2 mb-10">
+                  {[
+                    { icon: MapPin, label: "Waterloo, ON", href: undefined },
+                    { icon: Phone, label: "(226) 975-6863", href: "tel:+12269756863" },
+                    { icon: Mail, label: "s2nagall@uwaterloo.ca", href: "mailto:s2nagall@uwaterloo.ca" },
+                    { icon: Linkedin, label: "linkedin.com/in/sushyamnagallapati", href: "https://www.linkedin.com/in/sushyamnagallapati" },
+                  ].map(({ icon: Icon, label, href }) =>
+                    href ? (
+                      <a
+                        key={label}
+                        href={href}
+                        target={href.startsWith("http") ? "_blank" : undefined}
+                        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted rounded-full px-3 py-1.5 hover:text-foreground hover:bg-muted/80 transition-colors duration-200"
+                      >
+                        <Icon className="w-3 h-3 flex-shrink-0" />
+                        {label}
+                      </a>
+                    ) : (
+                      <span
+                        key={label}
+                        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted rounded-full px-3 py-1.5"
+                      >
+                        <Icon className="w-3 h-3 flex-shrink-0" />
+                        {label}
+                      </span>
+                    )
+                  )}
+                </div>
+
+                {/* ── Experience ─────────────────────── */}
+                <section className="mb-10">
+                  <SectionHeading title="Experience" />
+                  <div className="space-y-8">
+                    {experience.map((job) => (
+                      <div key={job.company}>
+                        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-4 mb-2">
+                          <div>
+                            <span className="font-semibold text-foreground text-sm sm:text-[0.95rem]">
+                              {job.company}
+                            </span>
+                            <span className="text-muted-foreground text-sm">
+                              {" · "}
+                              {job.role}
+                            </span>
+                          </div>
+                          <span className="text-xs text-muted-foreground whitespace-nowrap">
+                            {job.period} · {job.location}
                           </span>
                         </div>
+                        <ul className="space-y-2 mt-1">
+                          {job.bullets.map((bullet, i) => (
+                            <li
+                              key={i}
+                              className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed"
+                            >
+                              <span className="mt-[0.45em] w-1.5 h-1.5 rounded-full bg-primary/40 flex-shrink-0" />
+                              {bullet}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <div className="border-t border-border mb-10" />
+
+                {/* ── Education ──────────────────────── */}
+                <section className="mb-10">
+                  <SectionHeading title="Education" />
+                  <div className="space-y-5">
+                    {education.map((edu) => (
+                      <div
+                        key={edu.institution}
+                        className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-4"
+                      >
+                        <div>
+                          <p className="font-semibold text-foreground text-sm sm:text-[0.95rem]">
+                            {edu.institution}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {edu.degree}
+                          </p>
+                        </div>
                         <span className="text-xs text-muted-foreground whitespace-nowrap">
-                          {job.period} · {job.location}
+                          {edu.period}
                         </span>
                       </div>
-                      <ul className="space-y-1.5 mt-2">
-                        {job.bullets.map((bullet, i) => (
-                          <li key={i} className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed">
-                            <span className="mt-[0.4em] w-1 h-1 rounded-full bg-muted-foreground/40 flex-shrink-0" />
-                            {bullet}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </section>
+                    ))}
+                  </div>
+                </section>
 
-              <div className="border-t border-border mb-10" />
+                <div className="border-t border-border mb-10" />
 
-              {/* ── Education ────────────────────── */}
-              <section className="mb-10">
-                <h2 className="font-serif text-lg font-semibold text-foreground mb-4 uppercase tracking-widest text-xs text-muted-foreground">
-                  Education
-                </h2>
-
-                <div className="space-y-5">
-                  {education.map((edu) => (
-                    <div key={edu.institution} className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-4">
-                      <div>
-                        <p className="font-semibold text-foreground text-sm sm:text-base">
-                          {edu.institution}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {edu.degree}
-                        </p>
+                {/* ── Skills ─────────────────────────── */}
+                <section>
+                  <SectionHeading title="Skills" />
+                  <div className="space-y-5">
+                    {skills.map((group) => (
+                      <div key={group.label} className="flex flex-col sm:flex-row gap-2 sm:gap-6">
+                        <span className="text-xs font-semibold text-foreground uppercase tracking-wide w-24 flex-shrink-0 pt-0.5">
+                          {group.label}
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {group.items.map((item) => (
+                            <span
+                              key={item}
+                              className="text-xs px-2.5 py-1 rounded-full bg-muted border border-border text-foreground/70"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <span className="text-xs text-muted-foreground whitespace-nowrap">
-                        {edu.period}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </section>
+                    ))}
+                  </div>
+                </section>
 
-              <div className="border-t border-border mb-10" />
-
-              {/* ── Skills ───────────────────────── */}
-              <section>
-                <h2 className="uppercase tracking-widest text-xs text-muted-foreground mb-4">
-                  Skills
-                </h2>
-
-                <div className="space-y-2.5">
-                  {skills.map((skill) => (
-                    <div key={skill.label} className="flex flex-col sm:flex-row gap-1 sm:gap-6 text-sm">
-                      <span className="font-medium text-foreground w-24 flex-shrink-0">
-                        {skill.label}
-                      </span>
-                      <span className="text-muted-foreground leading-relaxed">
-                        {skill.items}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
+              </div>
             </div>
           </FadeIn>
         </div>

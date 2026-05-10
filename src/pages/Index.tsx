@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import TechStackStrip from "@/components/TechStackStrip";
 import FadeIn from "@/components/FadeIn";
 import ContactSection from "@/components/ContactSection";
+import FeaturedProjects from "@/components/FeaturedProjects";
 
 const Index = () => {
   return (
@@ -47,6 +48,7 @@ const Index = () => {
         </div>
       </main>
 
+      <FeaturedProjects />
       <ContactSection />
       <Footer />
     </div>
