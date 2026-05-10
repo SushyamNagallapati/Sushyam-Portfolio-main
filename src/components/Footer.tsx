@@ -24,10 +24,12 @@ const Footer = () => {
 
           {/* Left — sign-off */}
           <div className="max-w-xs">
-            {/* Availability pill */}
-            <div className="inline-flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Open to new roles
+            {/* Availability indicator — minimal */}
+            <div className="flex items-center gap-2 mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+              <span className="text-xs font-medium text-muted-foreground tracking-wide">
+                Currently available
+              </span>
             </div>
 
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground leading-snug mb-3">
