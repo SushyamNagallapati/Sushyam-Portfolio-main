@@ -9,7 +9,7 @@ const featured = [
   {
     index: "01",
     name: "Agentic Financial Claim Assistant",
-    tagline: "Multi-agent system coordinating 25+ tools across document retrieval, NL-to-SQL, and email drafting — 88% answer accuracy.",
+    tagline: "Multi-agent system coordinating 25+ tools across document retrieval, NL-to-SQL, and email drafting, achieving 88% answer accuracy.",
     tags: ["Python", "LangGraph", "RAG", "LLaMA 3.2"],
     image: agenticImg,
     liveUrl: null as string | null,
@@ -18,7 +18,7 @@ const featured = [
   {
     index: "02",
     name: "AI Powered SaaS Chatbot",
-    tagline: "Full-stack chatbot with multi-turn context, markdown rendering, and a modular Node.js backend — deployed and live.",
+    tagline: "Full-stack chatbot with multi-turn context, markdown rendering, and a modular Node.js backend. Currently deployed and live.",
     tags: ["React", "TypeScript", "Node.js", "OpenAI API"],
     image: chatbotImg,
     liveUrl: "https://custom-chatbot-tau-swart.vercel.app/",

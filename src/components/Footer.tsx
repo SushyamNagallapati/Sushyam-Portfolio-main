@@ -36,7 +36,7 @@ const Footer = () => {
               Always building something new.
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              MEng in AI/ML from Waterloo, with a background in mechatronics and a genuine interest in how systems — software or otherwise — hold together under pressure.
+              MEng in AI/ML from Waterloo, with a mechatronics background and a genuine interest in how software systems hold together under pressure.
             </p>
 
             <a
