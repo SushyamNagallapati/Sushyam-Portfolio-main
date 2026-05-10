@@ -184,14 +184,12 @@ const HeroContent = () => {
         >
           <Link to="/projects">Projects</Link>
         </Button>
-        <a
-          href="https://drive.google.com/file/d/126JI9aQvQU0hWq553fLzv8OrTuS7K7I7/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to="/resume"
           className="inline-flex items-center justify-center h-11 px-8 text-sm font-medium tracking-wide rounded-full bg-transparent text-foreground border-2 border-foreground hover:bg-foreground hover:text-background transition-all duration-300"
         >
           Resume
-        </a>
+        </Link>
       </div>
 
       {/* Status */}
