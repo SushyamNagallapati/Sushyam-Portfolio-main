@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
-  { label: "About",    href: "/",        internal: true  },
-  { label: "Projects", href: "/projects", internal: true  },
-  { label: "Resume",   href: "/resume",   internal: true  },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/sushyamnagallapati", internal: false },
+  { label: "About",    href: "/",         internal: true },
+  { label: "Projects", href: "/projects", internal: true },
+  { label: "Resume",   href: "/resume",   internal: true },
 ];
 
 const socialLinks = [
