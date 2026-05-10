@@ -142,8 +142,6 @@ const Projects = () => {
     project.categories.includes(activeCategory)
   );
 
-  const countFor = (cat: ProjectCategory) =>
-    projects.filter((p) => p.categories.includes(cat)).length;
 
   return (
     <div className="min-h-screen flex flex-col bg-muted">
@@ -169,22 +167,13 @@ const Projects = () => {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full whitespace-nowrap flex-shrink-0 flex items-center gap-1.5 ${
+                  className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full whitespace-nowrap flex-shrink-0 ${
                     activeCategory === category
                       ? "bg-foreground text-background"
                       : "bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted/60"
                   }`}
                 >
                   {category}
-                  <span
-                    className={`text-[0.65rem] font-semibold rounded-full px-1.5 py-0.5 leading-none ${
-                      activeCategory === category
-                        ? "bg-background/20 text-background"
-                        : "bg-muted text-muted-foreground"
-                    }`}
-                  >
-                    {countFor(category)}
-                  </span>
                 </button>
               ))}
             </div>
