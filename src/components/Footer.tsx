@@ -61,6 +61,7 @@ const Footer = () => {
                     {internal ? (
                       <Link
                         to={href}
+                        onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                       >
                         {label}
