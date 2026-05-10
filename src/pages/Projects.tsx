@@ -29,19 +29,16 @@ interface Project {
   categories: ProjectCategory[];
 }
 
-/* ── Scramble title ──────────────────────────────── */
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
-const ScrambleTitle = ({
+/* ── Clip reveal title ───────────────────────────── */
+const ClipRevealTitle = ({
   text,
   className,
 }: {
   text: string;
   className?: string;
 }) => {
-  const [output, setOutput] = useState(text);
-  const [triggered, setTriggered] = useState(false);
-  const ref = useRef<HTMLHeadingElement>(null);
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -49,44 +46,29 @@ const ScrambleTitle = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTriggered(true);
+          setVisible(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.3 }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!triggered) return;
-    let frame = 0;
-    const totalFrames = text.length * 4;
-    const id = setInterval(() => {
-      setOutput(
-        text
-          .split("")
-          .map((ch, i) => {
-            if (ch === " ") return " ";
-            if (i < Math.floor(frame / 4)) return text[i];
-            return CHARS[Math.floor(Math.random() * CHARS.length)];
-          })
-          .join("")
-      );
-      frame++;
-      if (frame > totalFrames) {
-        setOutput(text);
-        clearInterval(id);
-      }
-    }, 28);
-    return () => clearInterval(id);
-  }, [triggered, text]);
-
   return (
-    <h2 ref={ref} className={className}>
-      {output}
-    </h2>
+    <div ref={ref} className="overflow-hidden">
+      <h2
+        className={className}
+        style={{
+          transform: visible ? "translateY(0)" : "translateY(110%)",
+          opacity: visible ? 1 : 0,
+          transition: "transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease",
+        }}
+      >
+        {text}
+      </h2>
+    </div>
   );
 };
 
@@ -336,7 +318,7 @@ const Projects = () => {
                           </span>
                         </div>
 
-                        <ScrambleTitle
+                        <ClipRevealTitle
                           text={project.name}
                           className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-3 sm:mb-4 leading-tight"
                         />
