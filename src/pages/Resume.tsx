@@ -31,16 +31,16 @@ const useCountUp = (target: number, duration = 1000, triggered = false) => {
 /* ── Data ────────────────────────────────────────── */
 const metrics = [
   { value: 30, suffix: "%+", label: "Event attendance increase" },
-  { value: 15, suffix: "%",  label: "Procurement cycle cut" },
-  { value: 3,  suffix: "",   label: "Programs managed" },
-  { value: 88, suffix: "%",  label: "RAG answer accuracy" },
+  { value: 15, suffix: "%", label: "Procurement cycle cut" },
+  { value: 3, suffix: "", label: "Programs managed" },
+  { value: 88, suffix: "%", label: "RAG answer accuracy" },
 ];
 
 const experience = [
   {
     company: "Velocity",
     role: "Campus Ambassador",
-    period: "Sep 2025 – Jan 2026",
+    period: "Sep 2025 - Jan 2026",
     location: "Waterloo, ON",
     bullets: [
       "Drove 30%+ increase in event attendance across Startup 101, AI Server, and 10 Day Sprint programs through targeted campus outreach coordinated with marketing, design, and operations teams.",
@@ -51,7 +51,7 @@ const experience = [
   {
     company: "Conrad School of Entrepreneurship and Business",
     role: "Project Intern",
-    period: "May 2025 – Jul 2025",
+    period: "May 2025 - Jul 2025",
     location: "Waterloo, ON",
     bullets: [
       "Delivered project management coursework (BE-605) and educational materials for ITA organization under the Conrad School's accelerator programs.",
@@ -60,7 +60,7 @@ const experience = [
   {
     company: "Dover Corporation",
     role: "Engineer Intern",
-    period: "Feb 2024 – Aug 2024",
+    period: "Aug 2023 - Jul 2024",
     location: "Tamil Nadu, India",
     bullets: [
       "Collaborated with the software development team to test and debug an internal web application, identifying UI and functional issues across multiple browsers.",
@@ -75,12 +75,12 @@ const education = [
   {
     institution: "University of Waterloo",
     degree: "Master of Engineering, System Design Engineering",
-    period: "Jan 2025 – Apr 2026",
+    period: "Jan 2025 - Apr 2026",
   },
   {
     institution: "Anna University Chennai",
     degree: "Bachelor of Engineering, Mechatronics",
-    period: "Jun 2019 – Apr 2023",
+    period: "Jun 2019 - Apr 2023",
   },
 ];
 
@@ -105,11 +105,26 @@ const skillGroups = [
   },
   {
     label: "Frontend",
-    items: ["React.js", "Tailwind CSS", "Shadcn/UI", "Mapbox GL JS", "HTML", "CSS"],
+    items: [
+      "React.js",
+      "Tailwind CSS",
+      "Shadcn/UI",
+      "Mapbox GL JS",
+      "HTML",
+      "CSS",
+    ],
   },
   {
     label: "Backend",
-    items: ["FastAPI", "Node.js", "Express.js", "REST APIs", "Microservices", "SQLAlchemy", "SQLite"],
+    items: [
+      "FastAPI",
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "Microservices",
+      "SQLAlchemy",
+      "SQLite",
+    ],
   },
   {
     label: "Tools",
@@ -120,20 +135,27 @@ const skillGroups = [
 const navSections = [
   { id: "experience", label: "Experience" },
   { id: "education", label: "Education" },
-  { id: "skills",    label: "Skills" },
+  { id: "skills", label: "Skills" },
 ];
 
 /* ── Metric card with count-up ───────────────────── */
 const MetricCard = ({
-  value, suffix, label, triggered,
+  value,
+  suffix,
+  label,
+  triggered,
 }: {
-  value: number; suffix: string; label: string; triggered: boolean;
+  value: number;
+  suffix: string;
+  label: string;
+  triggered: boolean;
 }) => {
   const count = useCountUp(value, 900, triggered);
   return (
     <div className="flex flex-col items-center text-center px-4 py-4 rounded-2xl bg-muted/60 border border-border/50 flex-1 min-w-[5rem]">
       <span className="font-serif text-2xl sm:text-3xl font-bold text-foreground tabular-nums">
-        {count}{suffix}
+        {count}
+        {suffix}
       </span>
       <span className="text-[0.65rem] sm:text-xs text-muted-foreground mt-1 leading-tight">
         {label}
@@ -157,7 +179,7 @@ const Resume = () => {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { threshold: 0.25, rootMargin: "-80px 0px -40% 0px" }
+      { threshold: 0.25, rootMargin: "-80px 0px -40% 0px" },
     );
     navSections.forEach(({ id }) => {
       const el = document.getElementById(id);
@@ -170,15 +192,19 @@ const Resume = () => {
   useEffect(() => {
     if (!metricsRef.current) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setMetricsTriggered(true); },
-      { threshold: 0.4 }
+      ([entry]) => {
+        if (entry.isIntersecting) setMetricsTriggered(true);
+      },
+      { threshold: 0.4 },
     );
     observer.observe(metricsRef.current);
     return () => observer.disconnect();
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -190,7 +216,6 @@ const Resume = () => {
       <main className="flex-1 pt-24 sm:pt-28 pb-20 print:pt-0 print:pb-0">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex gap-12 lg:gap-16 items-start">
-
             {/* ── Left sticky sidebar (desktop) ──────── */}
             <aside className="hidden lg:flex flex-col w-48 xl:w-52 flex-shrink-0 sticky top-28 self-start print:hidden">
               <FadeIn>
@@ -205,26 +230,47 @@ const Resume = () => {
                 {/* Contact */}
                 <div className="space-y-2 mb-8">
                   {[
-                    { icon: MapPin,   label: "Waterloo, ON",             href: undefined },
-                    { icon: Phone,    label: "(226) 975-6863",           href: "tel:+12269756863" },
-                    { icon: Mail,     label: "s2nagall@uwaterloo.ca",    href: "mailto:s2nagall@uwaterloo.ca" },
-                    { icon: Linkedin, label: "LinkedIn",                 href: "https://www.linkedin.com/in/sushyamnagallapati" },
+                    { icon: MapPin, label: "Waterloo, ON", href: undefined },
+                    {
+                      icon: Phone,
+                      label: "(226) 975-6863",
+                      href: "tel:+12269756863",
+                    },
+                    {
+                      icon: Mail,
+                      label: "s2nagall@uwaterloo.ca",
+                      href: "mailto:s2nagall@uwaterloo.ca",
+                    },
+                    {
+                      icon: Linkedin,
+                      label: "LinkedIn",
+                      href: "https://www.linkedin.com/in/sushyamnagallapati",
+                    },
                   ].map(({ icon: Icon, label, href }) =>
                     href ? (
-                      <a key={label} href={href}
+                      <a
+                        key={label}
+                        href={href}
                         target={href.startsWith("http") ? "_blank" : undefined}
-                        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        rel={
+                          href.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                         className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors duration-200"
                       >
                         <Icon className="w-3 h-3 flex-shrink-0" />
                         {label}
                       </a>
                     ) : (
-                      <span key={label} className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <span
+                        key={label}
+                        className="flex items-center gap-2 text-xs text-muted-foreground"
+                      >
                         <Icon className="w-3 h-3 flex-shrink-0" />
                         {label}
                       </span>
-                    )
+                    ),
                   )}
                 </div>
 
@@ -240,9 +286,11 @@ const Resume = () => {
                           : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      <span className={`w-4 h-px transition-all duration-300 ${
-                        activeSection === id ? "bg-primary w-6" : "bg-border"
-                      }`} />
+                      <span
+                        className={`w-4 h-px transition-all duration-300 ${
+                          activeSection === id ? "bg-primary w-6" : "bg-border"
+                        }`}
+                      />
                       {label}
                     </button>
                   ))}
@@ -263,7 +311,6 @@ const Resume = () => {
 
             {/* ── Right: main content ─────────────────── */}
             <div className="flex-1 min-w-0">
-
               {/* Mobile header */}
               <FadeIn>
                 <div className="lg:hidden mb-8">
@@ -282,28 +329,50 @@ const Resume = () => {
                     </a>
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">
-                    MEng graduate in System Design Engineering (AI/ML) from the University of Waterloo. Open to SWE and AI engineer roles.
+                    MEng graduate in System Design Engineering (AI/ML) from the
+                    University of Waterloo. Open to SWE and AI engineer roles.
                   </p>
                   {/* Mobile contact chips */}
                   <div className="flex flex-wrap gap-2">
                     {[
-                      { icon: MapPin,   label: "Waterloo, ON",           href: undefined },
-                      { icon: Mail,     label: "s2nagall@uwaterloo.ca",  href: "mailto:s2nagall@uwaterloo.ca" },
-                      { icon: Linkedin, label: "LinkedIn",               href: "https://www.linkedin.com/in/sushyamnagallapati" },
+                      { icon: MapPin, label: "Waterloo, ON", href: undefined },
+                      {
+                        icon: Mail,
+                        label: "s2nagall@uwaterloo.ca",
+                        href: "mailto:s2nagall@uwaterloo.ca",
+                      },
+                      {
+                        icon: Linkedin,
+                        label: "LinkedIn",
+                        href: "https://www.linkedin.com/in/sushyamnagallapati",
+                      },
                     ].map(({ icon: Icon, label, href }) =>
                       href ? (
-                        <a key={label} href={href}
-                          target={href.startsWith("http") ? "_blank" : undefined}
-                          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        <a
+                          key={label}
+                          href={href}
+                          target={
+                            href.startsWith("http") ? "_blank" : undefined
+                          }
+                          rel={
+                            href.startsWith("http")
+                              ? "noopener noreferrer"
+                              : undefined
+                          }
                           className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-background border border-border rounded-full px-3 py-1.5 hover:text-foreground transition-colors"
                         >
-                          <Icon className="w-3 h-3" />{label}
+                          <Icon className="w-3 h-3" />
+                          {label}
                         </a>
                       ) : (
-                        <span key={label} className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-background border border-border rounded-full px-3 py-1.5">
-                          <Icon className="w-3 h-3" />{label}
+                        <span
+                          key={label}
+                          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-background border border-border rounded-full px-3 py-1.5"
+                        >
+                          <Icon className="w-3 h-3" />
+                          {label}
                         </span>
-                      )
+                      ),
                     )}
                   </div>
                 </div>
@@ -313,7 +382,11 @@ const Resume = () => {
               <FadeIn>
                 <div ref={metricsRef} className="flex gap-3 mb-12 sm:mb-14">
                   {metrics.map((m) => (
-                    <MetricCard key={m.label} {...m} triggered={metricsTriggered} />
+                    <MetricCard
+                      key={m.label}
+                      {...m}
+                      triggered={metricsTriggered}
+                    />
                   ))}
                 </div>
               </FadeIn>
@@ -343,7 +416,8 @@ const Resume = () => {
                               {job.company}
                             </span>
                             <span className="text-muted-foreground text-sm">
-                              {" · "}{job.role}
+                              {" · "}
+                              {job.role}
                             </span>
                           </div>
                           <span className="text-xs text-muted-foreground whitespace-nowrap">
@@ -353,7 +427,10 @@ const Resume = () => {
 
                         <ul className="space-y-2">
                           {job.bullets.map((bullet, bi) => (
-                            <li key={bi} className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                            <li
+                              key={bi}
+                              className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed"
+                            >
                               <span className="mt-[0.45em] w-1.5 h-1.5 rounded-full bg-primary/35 flex-shrink-0" />
                               {bullet}
                             </li>
@@ -388,7 +465,9 @@ const Resume = () => {
                             <p className="font-semibold text-foreground text-sm sm:text-[0.95rem]">
                               {edu.institution}
                             </p>
-                            <p className="text-sm text-muted-foreground">{edu.degree}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {edu.degree}
+                            </p>
                           </div>
                           <span className="text-xs text-muted-foreground whitespace-nowrap">
                             {edu.period}
@@ -427,7 +506,11 @@ const Resume = () => {
                     {skillGroups.map(({ label }) => (
                       <button
                         key={label}
-                        onClick={() => setActiveSkillCat(activeSkillCat === label ? null : label)}
+                        onClick={() =>
+                          setActiveSkillCat(
+                            activeSkillCat === label ? null : label,
+                          )
+                        }
                         className={`text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 ${
                           activeSkillCat === label
                             ? "bg-foreground text-background"
@@ -442,10 +525,13 @@ const Resume = () => {
 
                 <div className="space-y-6">
                   {skillGroups.map((group, i) => {
-                    const isActive = activeSkillCat === null || activeSkillCat === group.label;
+                    const isActive =
+                      activeSkillCat === null || activeSkillCat === group.label;
                     return (
                       <FadeIn key={group.label} delay={i * 60}>
-                        <div className={`transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-25"}`}>
+                        <div
+                          className={`transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-25"}`}
+                        >
                           <p className="text-[0.7rem] font-semibold uppercase tracking-widest text-muted-foreground/70 mb-2.5">
                             {group.label}
                           </p>
@@ -469,7 +555,6 @@ const Resume = () => {
                   })}
                 </div>
               </section>
-
             </div>
           </div>
         </div>
