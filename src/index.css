@@ -44,12 +44,6 @@
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Inter', system-ui, sans-serif;
 
-    /* Neobrutalism tokens */
-    --nb-border: 0 0% 0%;
-    --box-shadow-x: 4px;
-    --box-shadow-y: 4px;
-    --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px hsl(var(--nb-border));
-
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -133,22 +127,6 @@
 }
 
 @layer components {
-  .nav-link {
-    @apply text-sm tracking-wide text-muted-foreground hover:text-foreground transition-all duration-300 ease-out;
-  }
-  
-  .nav-link-active {
-    @apply text-foreground relative;
-  }
-  .nav-link-active::after {
-    content: '';
-    @apply absolute -bottom-1 left-0 right-0 h-px bg-foreground;
-  }
-  
-  .social-icon {
-    @apply w-5 h-5 text-foreground hover:text-primary transition-all duration-300 ease-out cursor-pointer;
-  }
-
   .scrollbar-none {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -157,6 +135,7 @@
     display: none;
   }
 }
+
 @layer utilities {
   @keyframes fade-in-up {
     from { opacity: 0; transform: translateY(8px); }
