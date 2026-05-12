@@ -31,9 +31,9 @@ const useCountUp = (target: number, duration = 1000, triggered = false) => {
 /* ── Data ────────────────────────────────────────── */
 const metrics = [
   { value: 30, suffix: "%+", label: "Event attendance increase" },
-  { value: 15, suffix: "%",  label: "Procurement cycle cut"    },
-  { value: 3,  suffix: "",   label: "Programs managed"         },
-  { value: 88, suffix: "%",  label: "RAG answer accuracy"      },
+  { value: 15, suffix: "%", label: "Procurement cycle cut" },
+  { value: 3, suffix: "", label: "Programs managed" },
+  { value: 88, suffix: "%", label: "RAG answer accuracy" },
 ];
 
 const experience = [
@@ -41,7 +41,7 @@ const experience = [
     year: "2025",
     company: "Velocity",
     role: "Campus Ambassador",
-    period: "Sep 2025 – Jan 2026",
+    period: "Sep 2025 - Jan 2026",
     bullets: [
       "Drove 30%+ increase in event attendance across Startup 101, AI Server, and 10 Day Sprint programs through targeted campus outreach coordinated with marketing, design, and operations teams.",
       "Tracked and analyzed campaign performance using Google Analytics and Sprout Social, iterating outreach strategy each event cycle based on engagement data.",
@@ -52,7 +52,7 @@ const experience = [
     year: "2025",
     company: "Conrad School of Entrepreneurship and Business",
     role: "Project Intern",
-    period: "May 2025 – Jul 2025",
+    period: "May 2025 - Jul 2025",
     bullets: [
       "Delivered project management coursework (BE-605) and educational materials for ITA organization under the Conrad School's accelerator programs.",
     ],
@@ -61,7 +61,7 @@ const experience = [
     year: "2023",
     company: "Dover Corporation",
     role: "Engineer Intern",
-    period: "Aug 2023 – Jul 2024",
+    period: "Aug 2023 - Jul 2024",
     bullets: [
       "Collaborated with the software development team to test and debug an internal web application, identifying UI and functional issues across multiple browsers.",
       "Contributed frontend code (HTML, CSS, JavaScript) to implement UI fixes and minor feature updates in a collaborative development workflow.",
@@ -76,13 +76,13 @@ const education = [
     year: "2025",
     institution: "University of Waterloo",
     degree: "Master of Engineering, System Design Engineering",
-    period: "Jan 2025 – Apr 2026",
+    period: "Jan 2025 - Apr 2026",
   },
   {
     year: "2019",
     institution: "Anna University Chennai",
     degree: "Bachelor of Engineering, Mechatronics",
-    period: "Jun 2019 – Apr 2023",
+    period: "Jun 2019 - Apr 2023",
   },
 ];
 
@@ -107,11 +107,26 @@ const skillGroups = [
   },
   {
     label: "Frontend",
-    items: ["React.js", "Tailwind CSS", "Shadcn/UI", "Mapbox GL JS", "HTML", "CSS"],
+    items: [
+      "React.js",
+      "Tailwind CSS",
+      "Shadcn/UI",
+      "Mapbox GL JS",
+      "HTML",
+      "CSS",
+    ],
   },
   {
     label: "Backend",
-    items: ["FastAPI", "Node.js", "Express.js", "REST APIs", "Microservices", "SQLAlchemy", "SQLite"],
+    items: [
+      "FastAPI",
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "Microservices",
+      "SQLAlchemy",
+      "SQLite",
+    ],
   },
   {
     label: "Tools",
@@ -171,7 +186,6 @@ const Resume = () => {
 
       <main className="flex-1 pt-24 sm:pt-28 pb-24 print:pt-0 print:pb-0">
         <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
-
           {/* ── Page header ──────────────────────────── */}
           <FadeIn>
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-7 sm:mb-9">
@@ -180,8 +194,8 @@ const Resume = () => {
                   Sushyam Nagallapati
                 </h1>
                 <p className="mt-3 text-sm text-muted-foreground max-w-sm leading-relaxed">
-                  MEng candidate at Waterloo · AI/ML and full-stack engineering ·
-                  Open to new grad roles
+                  MEng candidate at Waterloo · AI/ML and full-stack engineering
+                  · Open to new grad roles
                 </p>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
                   <a
@@ -191,7 +205,10 @@ const Resume = () => {
                     <Mail className="w-3.5 h-3.5 flex-shrink-0" />
                     s2nagall@uwaterloo.ca
                   </a>
-                  <span className="hidden sm:block w-px h-3 bg-border" aria-hidden />
+                  <span
+                    className="hidden sm:block w-px h-3 bg-border"
+                    aria-hidden
+                  />
                   <a
                     href="https://www.linkedin.com/in/sushyamnagallapati"
                     target="_blank"
@@ -231,10 +248,8 @@ const Resume = () => {
 
           {/* ── Two-column layout ─────────────────────── */}
           <div className="flex flex-col lg:flex-row lg:gap-16 xl:gap-24 items-start">
-
             {/* ── Left: Experience + Education ────────── */}
             <div className="flex-1 min-w-0">
-
               {/* Experience */}
               <section id="experience" className="mb-16 scroll-mt-28">
                 <FadeIn>
@@ -331,7 +346,6 @@ const Resume = () => {
                   ))}
                 </div>
               </section>
-
             </div>
 
             {/* ── Right: Skills sidebar ────────────────── */}
@@ -376,7 +390,8 @@ const Resume = () => {
                   <div className="space-y-5">
                     {skillGroups.map((group) => {
                       const isActive =
-                        activeSkillCat === null || activeSkillCat === group.label;
+                        activeSkillCat === null ||
+                        activeSkillCat === group.label;
                       return (
                         <div
                           key={group.label}
@@ -408,7 +423,6 @@ const Resume = () => {
                 </section>
               </FadeIn>
             </aside>
-
           </div>
         </div>
       </main>
