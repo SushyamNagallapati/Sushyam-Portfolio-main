@@ -149,7 +149,7 @@ const MetricStat = ({
   const count = useCountUp(value, 900, triggered);
   return (
     <div className="flex flex-col">
-      <span className="font-serif text-2xl sm:text-3xl font-bold text-foreground tabular-nums leading-none">
+      <span className="font-serif text-2xl sm:text-3xl font-bold text-primary tabular-nums leading-none">
         {count}
         {suffix}
       </span>
@@ -265,13 +265,13 @@ const Resume = () => {
                         {/* Ghost year */}
                         <span
                           aria-hidden
-                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[5rem] sm:text-[6rem] text-foreground/[0.045] dark:text-foreground/[0.07]"
+                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[4.5rem] sm:text-[5rem] text-foreground/[0.028] dark:text-foreground/[0.05]"
                         >
                           {job.year}
                         </span>
 
                         {/* Entry content */}
-                        <div className="relative pt-9">
+                        <div className="relative pt-12">
                           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
                             <div>
                               <span className="font-semibold text-foreground text-[0.95rem]">
@@ -292,7 +292,7 @@ const Resume = () => {
                                 key={bi}
                                 className="flex gap-3 text-sm text-muted-foreground leading-relaxed"
                               >
-                                <span className="mt-[0.5em] w-1 h-1 rounded-full bg-foreground/25 flex-shrink-0" />
+                                <span className="mt-[0.5em] w-1 h-1 rounded-full bg-primary/70 flex-shrink-0" />
                                 {bullet}
                               </li>
                             ))}
@@ -321,12 +321,12 @@ const Resume = () => {
                         {/* Ghost year */}
                         <span
                           aria-hidden
-                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[5rem] sm:text-[6rem] text-foreground/[0.045] dark:text-foreground/[0.07]"
+                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[4.5rem] sm:text-[5rem] text-foreground/[0.028] dark:text-foreground/[0.05]"
                         >
                           {edu.year}
                         </span>
 
-                        <div className="relative pt-9">
+                        <div className="relative pt-12">
                           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
                             <div>
                               <p className="font-semibold text-foreground text-[0.95rem]">
