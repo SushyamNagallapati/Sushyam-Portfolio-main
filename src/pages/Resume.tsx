@@ -265,13 +265,13 @@ const Resume = () => {
                         {/* Ghost year */}
                         <span
                           aria-hidden
-                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[4.5rem] sm:text-[5rem] text-foreground/[0.028] dark:text-foreground/[0.05]"
+                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[2.5rem] sm:text-[3.5rem] text-foreground opacity-[0.06] dark:opacity-[0.1]"
                         >
                           {job.year}
                         </span>
 
                         {/* Entry content */}
-                        <div className="relative pt-12">
+                        <div className="relative pt-10 sm:pt-14">
                           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
                             <div>
                               <span className="font-semibold text-foreground text-[0.95rem]">
@@ -321,12 +321,12 @@ const Resume = () => {
                         {/* Ghost year */}
                         <span
                           aria-hidden
-                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[4.5rem] sm:text-[5rem] text-foreground/[0.028] dark:text-foreground/[0.05]"
+                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[2.5rem] sm:text-[3.5rem] text-foreground opacity-[0.06] dark:opacity-[0.1]"
                         >
                           {edu.year}
                         </span>
 
-                        <div className="relative pt-12">
+                        <div className="relative pt-10 sm:pt-14">
                           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
                             <div>
                               <p className="font-semibold text-foreground text-[0.95rem]">
