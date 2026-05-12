@@ -64,7 +64,7 @@ const FeaturedProjects = () => {
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {featured.map((project, i) => (
-            <FadeIn key={project.index} delay={i * 80}>
+            <FadeIn key={project.index} delay={i * 80} className="h-full">
               <div className="group bg-background rounded-2xl border border-border/60 overflow-hidden hover:shadow-lg hover:border-border transition-all duration-300 flex flex-col h-full">
 
                 {/* Image */}

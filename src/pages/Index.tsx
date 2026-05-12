@@ -12,7 +12,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="relative flex flex-col pt-24 pb-0 sm:pt-28 sm:pb-0 overflow-hidden">
+      <main className="relative flex flex-col pt-24 pb-16 sm:pt-28 sm:pb-20 md:pb-28 overflow-hidden">
         {/* Decorative background */}
         <div
           aria-hidden
@@ -36,16 +36,17 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Tech Stack — centered, full-width strip */}
-          <FadeIn className="mt-12 sm:mt-14 md:mt-16 lg:mt-20 flex flex-col items-center text-center">
-            <h2 className="text-sm sm:text-base font-medium text-foreground/60 uppercase tracking-[0.2em] mb-4 sm:mb-5">
-              Tech Stack
-            </h2>
-            <div className="w-full">
-              <TechStackStrip />
-            </div>
-          </FadeIn>
         </div>
+
+        {/* Tech Stack — full-width strip, outside padded container */}
+        <FadeIn className="mt-12 sm:mt-14 md:mt-16 lg:mt-20 flex flex-col items-center text-center">
+          <h2 className="text-sm sm:text-base font-medium text-foreground/60 uppercase tracking-[0.2em] mb-4 sm:mb-5">
+            Tech Stack
+          </h2>
+          <div className="w-full">
+            <TechStackStrip />
+          </div>
+        </FadeIn>
       </main>
 
       <FeaturedProjects />
