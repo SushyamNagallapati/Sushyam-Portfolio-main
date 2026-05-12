@@ -15,8 +15,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    --primary: 220 90% 56%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 45 73% 46%;
+    --primary-foreground: 0 0% 8%;
 
     --secondary: 30 25% 88%;
     --secondary-foreground: 0 0% 10%;
@@ -32,7 +32,7 @@
 
     --border: 0 0% 92%;
     --input: 0 0% 90%;
-    --ring: 220 90% 56%;
+    --ring: 45 73% 46%;
 
     --radius: 0.5rem;
 
@@ -64,8 +64,8 @@
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 220 90% 56%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 42 80% 55%;
+    --primary-foreground: 0 0% 8%;
 
     --secondary: 30 15% 20%;
     --secondary-foreground: 0 0% 95%;
@@ -81,7 +81,7 @@
 
     --border: 0 0% 15%;
     --input: 0 0% 20%;
-    --ring: 220 90% 56%;
+    --ring: 42 80% 55%;
 
     --beige: 220 10% 10%;
     --navy: 220 20% 90%;

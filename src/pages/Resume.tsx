@@ -41,7 +41,7 @@ const experience = [
     year: "2025",
     company: "Velocity",
     role: "Campus Ambassador",
-    period: "Sep 2025 - Jan 2026",
+    period: "Sep 2025 – Jan 2026",
     bullets: [
       "Drove 30%+ increase in event attendance across Startup 101, AI Server, and 10 Day Sprint programs through targeted campus outreach coordinated with marketing, design, and operations teams.",
       "Tracked and analyzed campaign performance using Google Analytics and Sprout Social, iterating outreach strategy each event cycle based on engagement data.",
@@ -52,7 +52,7 @@ const experience = [
     year: "2025",
     company: "Conrad School of Entrepreneurship and Business",
     role: "Project Intern",
-    period: "May 2025 - Jul 2025",
+    period: "May 2025 – Jul 2025",
     bullets: [
       "Delivered project management coursework (BE-605) and educational materials for ITA organization under the Conrad School's accelerator programs.",
     ],
@@ -61,7 +61,7 @@ const experience = [
     year: "2023",
     company: "Dover Corporation",
     role: "Engineer Intern",
-    period: "Aug 2023 - Jul 2024",
+    period: "Aug 2023 – Jul 2024",
     bullets: [
       "Collaborated with the software development team to test and debug an internal web application, identifying UI and functional issues across multiple browsers.",
       "Contributed frontend code (HTML, CSS, JavaScript) to implement UI fixes and minor feature updates in a collaborative development workflow.",
@@ -76,13 +76,13 @@ const education = [
     year: "2025",
     institution: "University of Waterloo",
     degree: "Master of Engineering, System Design Engineering",
-    period: "Jan 2025 - Apr 2026",
+    period: "Jan 2025 – Apr 2026",
   },
   {
     year: "2019",
     institution: "Anna University Chennai",
     degree: "Bachelor of Engineering, Mechatronics",
-    period: "Jun 2019 - Apr 2023",
+    period: "Jun 2019 – Apr 2023",
   },
 ];
 
@@ -253,7 +253,7 @@ const Resume = () => {
               {/* Experience */}
               <section id="experience" className="mb-16 scroll-mt-28">
                 <FadeIn>
-                  <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-10">
+                  <h2 className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-10">
                     Experience
                   </h2>
                 </FadeIn>
@@ -309,7 +309,7 @@ const Resume = () => {
               {/* Education */}
               <section id="education" className="scroll-mt-28">
                 <FadeIn>
-                  <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-10">
+                  <h2 className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-10">
                     Education
                   </h2>
                 </FadeIn>
@@ -352,7 +352,7 @@ const Resume = () => {
             <aside className="w-full mt-16 lg:mt-0 lg:w-56 xl:w-64 flex-shrink-0 lg:sticky lg:top-28">
               <FadeIn>
                 <section id="skills" className="scroll-mt-28">
-                  <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-6">
+                  <h2 className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-6">
                     Skills
                   </h2>
 
