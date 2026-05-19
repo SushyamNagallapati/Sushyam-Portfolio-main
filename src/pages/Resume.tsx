@@ -5,7 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import { Download, Mail, Linkedin } from "lucide-react";
 
 const RESUME_PDF_URL =
-  "https://drive.google.com/file/d/1_vDMkN7Duow5DrriBFWrxN1F4xY-Ujvx/view?usp=sharing";
+  "https://drive.google.com/file/d/16Bqc4q6zdI0huBORhgcu2QnE_-oUxSnc/view?usp=sharing";
 
 /* ── Count-up hook ───────────────────────────────── */
 const useCountUp = (target: number, duration = 1000, triggered = false) => {
