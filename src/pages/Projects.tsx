@@ -219,19 +219,6 @@ const Projects = () => {
     e.currentTarget.style.setProperty("--sy", `${e.clientY - rect.top}px`);
   };
 
-  /* Image 3D tilt */
-  const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-    e.currentTarget.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 5}deg) scale3d(1.02,1.02,1.02)`;
-  };
-
-  const resetTilt = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform =
-      "perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-muted">
       <Header />
@@ -388,14 +375,9 @@ const Projects = () => {
                         </div>
                       </div>
 
-                      {/* Image with 3D tilt */}
+                      {/* Image */}
                       <div className="w-full md:flex-1 flex items-center justify-center">
-                        <div
-                          className="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
-                          style={{ transition: "transform 0.15s ease-out" }}
-                          onMouseMove={handleTilt}
-                          onMouseLeave={resetTilt}
-                        >
+                        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto">
                           {project.liveUrl ? (
                             <a
                               href={project.liveUrl}
@@ -404,11 +386,11 @@ const Projects = () => {
                               className="group block"
                               aria-label={`Open live view of ${project.name}`}
                             >
-                              <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md transition-shadow duration-300 group-hover:shadow-xl">
+                              <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md transition-shadow duration-300 group-hover:shadow-lg">
                                 <img
                                   src={project.image}
                                   alt={project.name}
-                                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                                 />
                                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300 flex items-center justify-center">
                                   <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-semibold tracking-wide uppercase text-background bg-foreground px-4 py-2 rounded-full flex items-center gap-2">

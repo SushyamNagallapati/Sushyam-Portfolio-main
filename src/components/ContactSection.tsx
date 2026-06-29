@@ -13,14 +13,14 @@ const ContactSection = () => {
 
           {/* Heading */}
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] mb-6">
-            Have something in mind?
+            Let's work together.
           </h2>
 
           {/* Subtext */}
           <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-md mb-10">
-            Actively looking for new grad roles in software engineering and
-            AI/ML. Whether you have an opening or just want to talk, I would love
-            to hear from you.
+            I'm actively looking for new grad roles in software engineering and
+            AI/ML. If you have an opening or just want to connect, reach out
+            directly.
           </p>
 
           {/* CTAs */}
