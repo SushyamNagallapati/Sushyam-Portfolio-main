@@ -149,7 +149,7 @@ const MetricStat = ({
   const count = useCountUp(value, 900, triggered);
   return (
     <div className="flex flex-col">
-      <span className="font-serif text-2xl sm:text-3xl font-bold text-primary tabular-nums leading-none">
+      <span className="font-black text-3xl sm:text-4xl text-primary tracking-[-0.04em] tabular-nums leading-none">
         {count}
         {suffix}
       </span>
@@ -190,7 +190,7 @@ const Resume = () => {
           <FadeIn>
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-7 sm:mb-9">
               <div>
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.75rem] font-bold text-foreground leading-[1.0] tracking-tight">
+                <h1 className="font-black text-4xl sm:text-5xl lg:text-[3.75rem] tracking-[-0.04em] text-foreground leading-[1.0]">
                   Sushyam Nagallapati
                 </h1>
                 <p className="mt-3 text-sm text-muted-foreground max-w-sm leading-relaxed">
@@ -225,7 +225,7 @@ const Resume = () => {
                 href={RESUME_PDF_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="print:hidden self-start flex-shrink-0 inline-flex items-center gap-2 h-10 px-5 text-xs font-medium rounded-full bg-foreground text-background hover:opacity-80 transition-opacity duration-200"
+                className="print:hidden self-start flex-shrink-0 inline-flex items-center gap-2 h-10 px-5 text-xs font-semibold rounded bg-primary text-primary-foreground hover:opacity-85 transition-opacity duration-200"
               >
                 <Download className="w-3.5 h-3.5" />
                 Download PDF
@@ -253,7 +253,7 @@ const Resume = () => {
               {/* Experience */}
               <section id="experience" className="mb-16 scroll-mt-28">
                 <FadeIn>
-                  <h2 className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-10">
+                  <h2 className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-10">
                     Experience
                   </h2>
                 </FadeIn>
@@ -265,7 +265,7 @@ const Resume = () => {
                         {/* Ghost year */}
                         <span
                           aria-hidden
-                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[2.5rem] sm:text-[3.5rem] text-foreground opacity-[0.06] dark:opacity-[0.1]"
+                          className="absolute top-0 -left-1 font-black leading-none select-none pointer-events-none text-[2.5rem] sm:text-[3.5rem] text-foreground opacity-[0.05]"
                         >
                           {job.year}
                         </span>
@@ -309,7 +309,7 @@ const Resume = () => {
               {/* Education */}
               <section id="education" className="scroll-mt-28">
                 <FadeIn>
-                  <h2 className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-10">
+                  <h2 className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-10">
                     Education
                   </h2>
                 </FadeIn>
@@ -321,7 +321,7 @@ const Resume = () => {
                         {/* Ghost year */}
                         <span
                           aria-hidden
-                          className="absolute top-0 -left-1 font-serif font-bold leading-none select-none pointer-events-none text-[2.5rem] sm:text-[3.5rem] text-foreground opacity-[0.06] dark:opacity-[0.1]"
+                          className="absolute top-0 -left-1 font-black leading-none select-none pointer-events-none text-[2.5rem] sm:text-[3.5rem] text-foreground opacity-[0.05]"
                         >
                           {edu.year}
                         </span>
@@ -352,7 +352,7 @@ const Resume = () => {
             <aside className="w-full mt-16 lg:mt-0 lg:w-56 xl:w-64 flex-shrink-0 lg:sticky lg:top-28">
               <FadeIn>
                 <section id="skills" className="scroll-mt-28">
-                  <h2 className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/60 mb-6">
+                  <h2 className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-6">
                     Skills
                   </h2>
 
@@ -362,7 +362,7 @@ const Resume = () => {
                       onClick={() => setActiveSkillCat(null)}
                       className={`text-xs font-medium px-3 py-1 rounded-full transition-all duration-200 ${
                         activeSkillCat === null
-                          ? "bg-foreground text-background"
+                          ? "bg-primary/10 text-primary border border-primary/20"
                           : "text-muted-foreground hover:text-foreground border border-border hover:border-foreground/20"
                       }`}
                     >
@@ -378,7 +378,7 @@ const Resume = () => {
                         }
                         className={`text-xs font-medium px-3 py-1 rounded-full transition-all duration-200 ${
                           activeSkillCat === label
-                            ? "bg-foreground text-background"
+                            ? "bg-primary/10 text-primary border border-primary/20"
                             : "text-muted-foreground hover:text-foreground border border-border hover:border-foreground/20"
                         }`}
                       >
@@ -406,7 +406,7 @@ const Resume = () => {
                             {group.items.map((item) => (
                               <span
                                 key={item}
-                                className={`text-xs px-2.5 py-1 rounded-full border transition-all duration-200 ${
+                                className={`font-mono text-[0.6rem] px-2 py-0.5 rounded border transition-all duration-200 ${
                                   isActive
                                     ? "bg-background border-border text-foreground/70 hover:border-primary/40 hover:text-foreground hover:bg-primary/5"
                                     : "bg-background border-border text-muted-foreground/30"

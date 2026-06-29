@@ -11,7 +11,7 @@ const feature = {
   index: "01",
   name: "Agentic Financial Claim Assistant",
   tagline:
-    "A modular multi-agent system built in Python using LangGraph and LLaMA 3.2. Coordinates document retrieval, natural-language-to-SQL, and email drafting across 25+ tools. RAG pipeline hit 88% answer accuracy; NL-to-SQL reached 100% on all evaluated schemas.",
+    "A modular multi-agent system in Python using LangGraph and LLaMA 3.2. Coordinates document retrieval, natural-language-to-SQL, and email drafting across 25+ tools. RAG pipeline hit 88% answer accuracy; NL-to-SQL reached 100% on all evaluated schemas.",
   tags: ["Python", "LangGraph", "RAG", "LLaMA 3.2", "NL-to-SQL"],
   image: agenticImg,
   reportUrl:
@@ -47,7 +47,7 @@ const secondary = [
 
 /* ── Tag pill ──────────────────────────────────────────────────── */
 const TagPill = ({ tag }: { tag: string }) => (
-  <span className="text-[0.65rem] font-medium px-2.5 py-1 rounded-full bg-background border border-border/70 text-muted-foreground">
+  <span className="font-mono text-[0.6rem] px-2 py-0.5 rounded border border-border/60 text-muted-foreground/80">
     {tag}
   </span>
 );
@@ -55,23 +55,23 @@ const TagPill = ({ tag }: { tag: string }) => (
 /* ── Main ──────────────────────────────────────────────────────── */
 const FeaturedProjects = () => {
   return (
-    <section className="w-full bg-muted py-20 sm:py-24">
+    <section className="w-full py-20 sm:py-24 border-t border-border/40">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
 
         {/* Section header */}
         <FadeIn>
           <div className="flex items-end justify-between mb-10 sm:mb-12">
             <div>
-              <p className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground/60 mb-2">
-                Selected work
+              <p className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-2">
+                // selected work
               </p>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
+              <h2 className="font-black text-2xl sm:text-3xl md:text-4xl text-foreground tracking-[-0.03em]">
                 Things I've built
               </h2>
             </div>
             <Link
               to="/projects"
-              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 group"
             >
               All projects
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
@@ -79,13 +79,13 @@ const FeaturedProjects = () => {
           </div>
         </FadeIn>
 
-        {/* ── Feature card — image left, text right ─────────── */}
+        {/* Feature card */}
         <FadeIn>
-          <div className="group bg-background rounded-2xl border border-border/60 overflow-hidden hover:shadow-lg hover:border-border transition-all duration-300 mb-4">
+          <div className="group bg-card border border-border/50 rounded overflow-hidden hover:border-primary/20 transition-all duration-300 mb-4">
             <div className="flex flex-col md:flex-row">
 
               {/* Image */}
-              <div className="w-full md:w-[54%] overflow-hidden flex-shrink-0 aspect-[16/10] md:aspect-auto md:min-h-[340px]">
+              <div className="w-full md:w-[54%] overflow-hidden flex-shrink-0 aspect-[16/10] md:aspect-auto md:min-h-[320px]">
                 <img
                   src={feature.image}
                   alt={feature.name}
@@ -99,7 +99,7 @@ const FeaturedProjects = () => {
                   <span className="font-mono text-xs text-muted-foreground/40 select-none">
                     {feature.index}
                   </span>
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-foreground leading-snug mt-2 mb-3">
+                  <h3 className="font-bold text-xl sm:text-2xl text-foreground leading-snug mt-2 mb-3 tracking-[-0.02em]">
                     {feature.name}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-5">
@@ -118,7 +118,7 @@ const FeaturedProjects = () => {
                       href={feature.reportUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 h-9 px-5 text-xs font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-opacity duration-200"
+                      className="inline-flex items-center gap-1.5 h-9 px-5 text-xs font-semibold rounded bg-primary text-primary-foreground hover:opacity-80 transition-opacity duration-200"
                     >
                       <FileText className="w-3 h-3" aria-hidden />
                       View report
@@ -129,7 +129,7 @@ const FeaturedProjects = () => {
                       href={feature.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 h-9 px-5 text-xs font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-opacity duration-200"
+                      className="inline-flex items-center gap-1.5 h-9 px-5 text-xs font-semibold rounded bg-primary text-primary-foreground hover:opacity-80 transition-opacity duration-200"
                     >
                       <ArrowUpRight className="w-3 h-3" aria-hidden />
                       Live demo
@@ -137,7 +137,7 @@ const FeaturedProjects = () => {
                   )}
                   <Link
                     to="/projects"
-                    className="inline-flex items-center gap-1.5 h-9 px-4 text-xs font-medium rounded-full border border-border text-foreground hover:bg-muted transition-colors duration-200 group/link"
+                    className="inline-flex items-center gap-1.5 h-9 px-4 text-xs font-medium rounded border border-border text-muted-foreground hover:text-foreground hover:border-border/80 transition-colors duration-200 group/link"
                   >
                     All projects
                     <ArrowRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform duration-200" />
@@ -149,13 +149,12 @@ const FeaturedProjects = () => {
           </div>
         </FadeIn>
 
-        {/* ── Two secondary cards ───────────────────────────── */}
+        {/* Two secondary cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {secondary.map((project, i) => (
             <FadeIn key={project.index} delay={i * 80} className="h-full">
-              <div className="group bg-background rounded-2xl border border-border/60 overflow-hidden hover:shadow-lg hover:border-border transition-all duration-300 flex flex-col h-full">
+              <div className="group bg-card border border-border/50 rounded overflow-hidden hover:border-primary/20 transition-all duration-300 flex flex-col h-full">
 
-                {/* Image */}
                 <div className="overflow-hidden aspect-[16/9] flex-shrink-0">
                   <img
                     src={project.image}
@@ -164,12 +163,11 @@ const FeaturedProjects = () => {
                   />
                 </div>
 
-                {/* Content */}
                 <div className="p-6 flex flex-col flex-1">
                   <span className="font-mono text-xs text-muted-foreground/40 mb-2 select-none">
                     {project.index}
                   </span>
-                  <h3 className="font-serif text-lg font-bold text-foreground leading-snug mb-2">
+                  <h3 className="font-bold text-lg text-foreground leading-snug mb-2 tracking-[-0.02em]">
                     {project.name}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
@@ -186,7 +184,7 @@ const FeaturedProjects = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 h-8 px-4 text-xs font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-opacity duration-200"
+                        className="inline-flex items-center gap-1.5 h-8 px-4 text-xs font-semibold rounded bg-primary text-primary-foreground hover:opacity-80 transition-opacity duration-200"
                       >
                         <ArrowUpRight className="w-3 h-3" aria-hidden />
                         Live demo
@@ -197,7 +195,7 @@ const FeaturedProjects = () => {
                         href={project.reportUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 h-8 px-4 text-xs font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-opacity duration-200"
+                        className="inline-flex items-center gap-1.5 h-8 px-4 text-xs font-semibold rounded bg-primary text-primary-foreground hover:opacity-80 transition-opacity duration-200"
                       >
                         <FileText className="w-3 h-3" aria-hidden />
                         View report
@@ -211,12 +209,12 @@ const FeaturedProjects = () => {
           ))}
         </div>
 
-        {/* Mobile: view all link */}
+        {/* Mobile: view all */}
         <FadeIn delay={160}>
           <div className="mt-8 flex justify-center sm:hidden">
             <Link
               to="/projects"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 group"
             >
               All projects
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />

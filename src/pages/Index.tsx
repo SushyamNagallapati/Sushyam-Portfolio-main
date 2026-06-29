@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import BentoHero from "@/components/BentoHero";
 import Footer from "@/components/Footer";
-import TechStackStrip from "@/components/TechStackStrip";
 import FadeIn from "@/components/FadeIn";
 import ContactSection from "@/components/ContactSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
@@ -13,22 +12,22 @@ const Index = () => {
 
       <main className="flex flex-col pt-24 sm:pt-28">
 
-        {/* ── Hero — bento grid ─────────────────────────────── */}
+        {/* Hero */}
         <div className="w-full max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pb-0">
           <BentoHero />
         </div>
 
-        {/* ── About ─────────────────────────────────────────── */}
+        {/* About */}
         <FadeIn
           delay={80}
           className="w-full max-w-6xl mx-auto px-6 sm:px-8 lg:px-12"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-14 sm:mt-16 py-10 sm:py-12 border-t border-border/40">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-16 sm:mt-20 py-10 sm:py-12 border-t border-border/40">
             <div>
-              <p className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground/60 mb-4">
-                About
+              <p className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-4">
+                // about
               </p>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground leading-snug">
+              <h2 className="font-black text-2xl sm:text-3xl text-foreground leading-snug tracking-[-0.03em]">
                 Engineer with a systems mindset.
               </h2>
             </div>
@@ -40,22 +39,12 @@ const Index = () => {
                 web applications.
               </p>
               <p className="text-sm sm:text-[0.925rem] text-muted-foreground leading-relaxed">
-                I care about code that's readable, systems that fail gracefully,
-                and products that solve real problems. I tend to think about the
-                whole stack: from data pipelines and model integration to the UI
-                people actually use.
+                I care about code that is readable, systems that fail
+                gracefully, and products that solve real problems. I tend to
+                think about the whole stack: from data pipelines and model
+                integration to the UI people actually use.
               </p>
             </div>
-          </div>
-        </FadeIn>
-
-        {/* ── Tech stack strip ──────────────────────────────── */}
-        <FadeIn className="mt-6 sm:mt-8 mb-16 sm:mb-20 flex flex-col items-center text-center">
-          <p className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground/60 mb-4 sm:mb-5">
-            Tech stack
-          </p>
-          <div className="w-full">
-            <TechStackStrip />
           </div>
         </FadeIn>
 

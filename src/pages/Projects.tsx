@@ -220,7 +220,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-muted">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
       <main className="flex-1 pt-24 sm:pt-28 pb-28 sm:pb-24">
@@ -228,7 +228,7 @@ const Projects = () => {
 
           {/* Page title */}
           <FadeIn>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-2">
+            <h1 className="font-black text-3xl sm:text-4xl md:text-5xl text-foreground tracking-[-0.04em] mb-2">
               Projects
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground mb-8 sm:mb-10">
@@ -246,7 +246,7 @@ const Projects = () => {
               {pill.ready && (
                 <span
                   aria-hidden
-                  className="absolute top-0 h-full rounded-full bg-foreground pointer-events-none"
+                  className="absolute top-0 h-full rounded bg-primary pointer-events-none"
                   style={{
                     left: pill.left,
                     width: pill.width,
@@ -260,7 +260,7 @@ const Projects = () => {
                   key={category}
                   ref={(el) => { tabRefs.current[i] = el; }}
                   onClick={() => setActiveCategory(category)}
-                  className={`relative z-10 px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap flex-shrink-0 transition-colors duration-200 ${
+                  className={`relative z-10 px-4 py-2 text-sm font-medium rounded whitespace-nowrap flex-shrink-0 transition-colors duration-200 ${
                     activeCategory === category
                       ? "text-background"
                       : "text-muted-foreground hover:text-foreground"
@@ -283,7 +283,7 @@ const Projects = () => {
 
                   {/* Spotlight wrapper */}
                   <div
-                    className="rounded-2xl transition-all duration-200"
+                    className="rounded transition-all duration-200"
                     style={{
                       "--sx": "50%",
                       "--sy": "50%",
@@ -300,14 +300,14 @@ const Projects = () => {
                       {/* Text */}
                       <div className="w-full md:flex-1 md:max-w-sm lg:max-w-md">
                         <div className="mb-3">
-                          <span className="font-serif text-4xl sm:text-5xl font-bold text-muted-foreground/20 leading-none select-none">
+                          <span className="font-black text-4xl sm:text-5xl text-muted-foreground/10 leading-none select-none">
                             {String(index + 1).padStart(2, "0")}
                           </span>
                         </div>
 
                         <ClipRevealTitle
                           text={project.name}
-                          className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-3 sm:mb-4 leading-tight"
+                          className="font-bold text-xl sm:text-2xl lg:text-3xl text-foreground mb-3 sm:mb-4 leading-tight tracking-[-0.02em]"
                         />
 
                         <p className="text-[0.875rem] sm:text-sm md:text-[0.9rem] text-muted-foreground leading-relaxed mb-5 sm:mb-6">
@@ -319,7 +319,7 @@ const Projects = () => {
                           {project.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="text-[0.7rem] font-medium px-2.5 py-1 rounded-full bg-background border border-border text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground hover:bg-primary/5"
+                              className="font-mono text-[0.6rem] px-2 py-0.5 rounded border border-border/60 text-muted-foreground/80"
                             >
                               {tag}
                             </span>
@@ -333,7 +333,7 @@ const Projects = () => {
                               href={project.viewMoreUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-all duration-200"
+                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded bg-primary text-primary-foreground hover:opacity-80 transition-all duration-200"
                             >
                               <FileText className="w-3.5 h-3.5" />
                               View Report
@@ -344,7 +344,7 @@ const Projects = () => {
                               href={project.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full bg-foreground text-background hover:opacity-75 transition-all duration-200"
+                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded bg-primary text-primary-foreground hover:opacity-80 transition-all duration-200"
                             >
                               <ExternalLink className="w-3.5 h-3.5" />
                               Live Demo
@@ -355,7 +355,7 @@ const Projects = () => {
                               href={project.videoUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full border border-border text-foreground hover:bg-muted transition-all duration-200"
+                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded border border-border text-foreground hover:border-primary/40 hover:text-primary transition-all duration-200"
                             >
                               <Play className="w-3.5 h-3.5" />
                               Video
@@ -366,7 +366,7 @@ const Projects = () => {
                               href={project.githubUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded-full border border-border text-foreground hover:bg-muted transition-all duration-200"
+                              className="inline-flex items-center justify-center gap-2 h-9 px-5 sm:px-6 text-xs sm:text-sm font-medium rounded border border-border text-foreground hover:border-primary/40 hover:text-primary transition-all duration-200"
                             >
                               <Github className="w-3.5 h-3.5" />
                               GitHub
@@ -386,14 +386,14 @@ const Projects = () => {
                               className="group block"
                               aria-label={`Open live view of ${project.name}`}
                             >
-                              <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md transition-shadow duration-300 group-hover:shadow-lg">
+                              <div className="relative overflow-hidden rounded border border-border/50 bg-card transition-all duration-200 group-hover:border-primary/20">
                                 <img
                                   src={project.image}
                                   alt={project.name}
                                   className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                                 />
                                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300 flex items-center justify-center">
-                                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-semibold tracking-wide uppercase text-background bg-foreground px-4 py-2 rounded-full flex items-center gap-2">
+                                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-mono text-primary-foreground bg-primary px-4 py-2 rounded flex items-center gap-2">
                                     <ExternalLink className="w-3 h-3" />
                                     Open Live
                                   </span>
@@ -401,7 +401,7 @@ const Projects = () => {
                               </div>
                             </a>
                           ) : (
-                            <div className="overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md">
+                            <div className="overflow-hidden rounded border border-border/50 bg-card">
                               <img
                                 src={project.image}
                                 alt={project.name}
