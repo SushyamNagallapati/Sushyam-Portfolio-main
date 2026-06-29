@@ -34,10 +34,10 @@ const Index = () => {
             </div>
             <div className="space-y-4">
               <p className="text-sm sm:text-[0.925rem] text-muted-foreground leading-relaxed">
-                My background is in mechatronics — an unusual mix of embedded
-                systems, control theory, and software. These days I work mainly
-                in Python and TypeScript, building AI systems and web
-                applications.
+                My background is in mechatronics, which gave me an unusual mix
+                of embedded systems, control theory, and software. These days I
+                work mainly in Python and TypeScript, building AI systems and
+                web applications.
               </p>
               <p className="text-sm sm:text-[0.925rem] text-muted-foreground leading-relaxed">
                 I care about code that's readable, systems that fail gracefully,

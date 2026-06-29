@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import profilePhoto from "@/assets/profile-photo.jpg";
-import { Linkedin } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 const metrics = [
   {
@@ -24,7 +24,7 @@ const BentoHero = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-3 sm:gap-4">
 
-      {/* ── Name + Bio — always-dark card ─────────────────────── */}
+      {/* Name + Bio — always-dark inverted card */}
       <div className="md:col-span-3 bg-foreground rounded-2xl p-7 sm:p-8 md:p-10 flex flex-col justify-between order-2 md:order-1 min-h-[280px] md:min-h-[340px]">
         <div>
           <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-white/35 dark:text-neutral-700 mb-6">
@@ -42,7 +42,7 @@ const BentoHero = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 pt-6 mt-8 border-t border-white/10 dark:border-black/8">
+        <div className="flex items-center gap-2 pt-6 mt-8 border-t border-white/10 dark:border-black/10">
           <span
             aria-hidden
             className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse flex-shrink-0"
@@ -53,41 +53,49 @@ const BentoHero = () => {
         </div>
       </div>
 
-      {/* ── Profile photo ─────────────────────────────────────── */}
+      {/* Profile photo */}
       <div className="md:col-span-2 rounded-2xl overflow-hidden bg-muted order-1 md:order-2 h-64 md:h-auto">
         <img
           src={profilePhoto}
-          alt="Sushyam Nagallapati — Software Engineer"
+          alt="Sushyam Nagallapati"
           className="w-full h-full object-cover object-top"
           loading="eager"
           decoding="async"
         />
       </div>
 
-      {/* ── Metric cards ──────────────────────────────────────── */}
-      {metrics.map((m) => (
-        <div
-          key={m.label}
-          className="md:col-span-1 bg-card border border-border/50 rounded-2xl p-5 sm:p-6 flex flex-col justify-between order-3 min-h-[130px]"
-        >
-          <p className="font-serif text-3xl font-bold text-primary leading-none mb-3 tabular-nums">
-            {m.value}
-          </p>
-          <div>
-            <p className="text-xs font-medium text-foreground leading-snug mb-0.5">
-              {m.label}
+      {/* Metric cards — 3-col row on mobile, individual cells on desktop */}
+      <div className="grid grid-cols-3 gap-3 sm:gap-4 order-3 md:contents">
+        {metrics.map((m) => (
+          <div
+            key={m.label}
+            className="md:col-span-1 md:order-3 bg-card border border-border/50 rounded-2xl p-3 sm:p-5 md:p-6 flex flex-col justify-between min-h-[110px] md:min-h-[130px]"
+          >
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-primary leading-none mb-2 md:mb-3 tabular-nums">
+              {m.value}
             </p>
-            <p className="text-[0.62rem] text-muted-foreground">{m.context}</p>
+            <div>
+              <p className="text-[0.65rem] sm:text-xs font-medium text-foreground leading-snug mb-0.5">
+                {m.label}
+              </p>
+              <p className="text-[0.6rem] sm:text-[0.62rem] text-muted-foreground hidden sm:block">
+                {m.context}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
-      {/* ── CTA card ──────────────────────────────────────────── */}
-      <div className="md:col-span-2 bg-card border border-border/50 rounded-2xl p-5 sm:p-6 flex flex-col justify-between order-4 min-h-[130px]">
-        <p className="text-xs text-muted-foreground">
-          Software Engineer · AI/ML · Full Stack
-        </p>
-        <div className="flex flex-wrap gap-2">
+      {/* CTA card */}
+      <div className="md:col-span-2 md:order-4 bg-card border border-border/50 rounded-2xl p-5 sm:p-6 flex flex-col justify-between order-4 min-h-[110px] md:min-h-[130px]">
+        <a
+          href="mailto:s2nagall@uwaterloo.ca"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+        >
+          <Mail className="w-3 h-3 flex-shrink-0" aria-hidden />
+          s2nagall@uwaterloo.ca
+        </a>
+        <div className="flex flex-wrap gap-2 mt-4">
           <Link
             to="/projects"
             className="inline-flex items-center justify-center h-9 px-5 text-xs font-medium rounded-full bg-foreground text-background hover:opacity-80 transition-opacity duration-200"
