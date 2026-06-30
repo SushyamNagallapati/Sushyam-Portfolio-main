@@ -19,8 +19,8 @@ const BentoHero = () => (
 
       {/* Text */}
       <div className="order-2 md:order-1">
-        <p className="font-mono text-xs text-primary tracking-wide mb-7">
-          // MEng candidate · Waterloo · open to new grad roles
+        <p className="font-mono text-xs text-muted-foreground dark:text-primary tracking-wide mb-7">
+          MEng candidate · Waterloo · open to new grad roles
         </p>
 
         <h1 className="font-black text-[2.75rem] sm:text-[3.75rem] lg:text-[5rem] leading-[0.88] tracking-[-0.04em] text-foreground mb-7">
@@ -85,7 +85,7 @@ const BentoHero = () => (
           <p className="font-black text-3xl sm:text-[2.25rem] tracking-[-0.04em] text-primary tabular-nums leading-none mb-1">
             {m.value}
           </p>
-          <p className="font-mono text-[0.6rem] text-muted-foreground/60 mb-0.5 tracking-wide">
+          <p className="font-mono text-[0.6rem] text-muted-foreground/60 mb-0.5 tracking-wide hidden dark:block">
             {m.key}
           </p>
           <p className="text-[0.65rem] text-muted-foreground leading-snug">

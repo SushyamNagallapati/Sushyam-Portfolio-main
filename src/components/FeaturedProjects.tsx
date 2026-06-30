@@ -62,8 +62,8 @@ const FeaturedProjects = () => {
         <FadeIn>
           <div className="flex items-end justify-between mb-10 sm:mb-12">
             <div>
-              <p className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-2">
-                // selected work
+              <p className="font-mono text-[0.6rem] text-muted-foreground dark:text-primary/70 tracking-widest uppercase mb-2">
+                Selected work
               </p>
               <h2 className="font-black text-2xl sm:text-3xl md:text-4xl text-foreground tracking-[-0.03em]">
                 Things I've built

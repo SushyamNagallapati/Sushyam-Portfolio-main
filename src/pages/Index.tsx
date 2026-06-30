@@ -24,8 +24,8 @@ const Index = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-16 sm:mt-20 py-10 sm:py-12 border-t border-border/40">
             <div>
-              <p className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-4">
-                // about
+              <p className="font-mono text-[0.6rem] text-muted-foreground dark:text-primary/70 tracking-widest uppercase mb-4">
+                About
               </p>
               <h2 className="font-black text-2xl sm:text-3xl text-foreground leading-snug tracking-[-0.03em]">
                 Engineer with a systems mindset.

@@ -253,7 +253,7 @@ const Resume = () => {
               {/* Experience */}
               <section id="experience" className="mb-16 scroll-mt-28">
                 <FadeIn>
-                  <h2 className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-10">
+                  <h2 className="font-mono text-[0.6rem] text-muted-foreground dark:text-primary/70 tracking-widest uppercase mb-10">
                     Experience
                   </h2>
                 </FadeIn>
@@ -309,7 +309,7 @@ const Resume = () => {
               {/* Education */}
               <section id="education" className="scroll-mt-28">
                 <FadeIn>
-                  <h2 className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-10">
+                  <h2 className="font-mono text-[0.6rem] text-muted-foreground dark:text-primary/70 tracking-widest uppercase mb-10">
                     Education
                   </h2>
                 </FadeIn>
@@ -352,7 +352,7 @@ const Resume = () => {
             <aside className="w-full mt-16 lg:mt-0 lg:w-56 xl:w-64 flex-shrink-0 lg:sticky lg:top-28">
               <FadeIn>
                 <section id="skills" className="scroll-mt-28">
-                  <h2 className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-6">
+                  <h2 className="font-mono text-[0.6rem] text-muted-foreground dark:text-primary/70 tracking-widest uppercase mb-6">
                     Skills
                   </h2>
 

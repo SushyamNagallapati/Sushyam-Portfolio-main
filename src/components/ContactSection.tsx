@@ -7,8 +7,8 @@ const ContactSection = () => {
       <FadeIn>
         <div className="w-full max-w-3xl mx-auto px-6 sm:px-8 py-24 sm:py-32 flex flex-col items-center text-center">
 
-          <p className="font-mono text-[0.6rem] text-primary/70 tracking-widest uppercase mb-5">
-            // contact
+          <p className="font-mono text-[0.6rem] text-muted-foreground dark:text-primary/70 tracking-widest uppercase mb-5">
+            Contact
           </p>
 
           <h2 className="font-black text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.0] mb-5 tracking-[-0.04em]">
